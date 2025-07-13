@@ -52,7 +52,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {{-- Total Alat Berat per Jenis --}}
             <div class="bg-white rounded-xl shadow-md p-6 self-start">
-                <h2 class="text-lg font-semibold mb-4 text-gray-700">Total Alat Berat per Jenis</h2>
+                <h2 class="text-lg font-semibold mb-4 text-gray-700">Total Heavy Equipment per Type</h2>
                 <ul class="space-y-2 text-gray-800">
                     <li class="flex justify-between"><span>Excavator</span><span
                             class="font-bold">{{ $totalExcavator }}</span></li>
@@ -61,7 +61,7 @@
                     <li class="flex justify-between"><span>Elevator</span><span
                             class="font-bold">{{ $totalElevator }}</span></li>
                     <li class="border-t pt-2 flex justify-between font-semibold text-gray-900">
-                        <span>Total Semua</span><span>{{ $totalEquipments }}</span>
+                        <span>Total Unit</span><span>{{ $totalEquipments }}</span>
                     </li>
                 </ul>
             </div>
@@ -73,26 +73,26 @@
                         <i class="bi bi-exclamation-triangle-fill text-red-600 text-xl"></i>
                     </div>
                     <div>
-                        <h2 class="text-lg font-semibold text-gray-700">Total Alat Berat Rusak</h2>
+                        <h2 class="text-lg font-semibold text-gray-700">Total Heavy Equipment Damaged</h2>
                         <div class="text-2xl font-bold text-red-500">{{ $totalDamaged }}</div>
                     </div>
                 </div>
 
                 {{-- Tabel --}}
                 @if ($damagedEquipments->isNotEmpty())
-                    <div class="mt-4 overflow-x-auto rounded-md">
+                    <div class="mt-4 overflow-x-auto bg-white border border-gray-200 rounded-md">
                         <table class="min-w-full text-sm text-gray-800 table-auto">
                             <thead class="bg-gray-100 text-center text-gray-600">
                                 <tr>
                                     <th class="px-4 py-2">#</th>
                                     <th class="px-4 py-2">Machine Type</th>
                                     <th class="px-4 py-2">Serial Number</th>
-                                    <th class="px-4 py-2">Tanggal Inspeksi Terakhir</th>
+                                    <th class="px-4 py-2">Last Inspection Date</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($damagedEquipments as $item)
-                                    <tr class="border-b hover:bg-gray-50 text-center">
+                                    <tr class="hover:bg-blue-50 text-center">
                                         <td class="px-4 py-2">{{ $loop->iteration }}</td>
                                         <td class="px-4 py-2">{{ $item['machine_type'] }}</td>
                                         <td class="px-4 py-2">{{ $item['serial_number'] }}</td>
