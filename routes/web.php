@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\DashboardEquipmentController;
 use App\Http\Controllers\Dashboard\DashboardUserController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/pengguna/{id}/ubah', [DashboardUserController::class, 'edit'])->name('dashboard.user.edit');
     Route::put('/dashboard/pengguna/{id}/ubah', [DashboardUserController::class, 'update'])->name('dashboard.user.update');
     Route::delete('/dashboard/pengguna/{id}/hapus', [DashboardUserController::class, 'destroy'])->name('dashboard.user.destroy');
+
+    // Manajemen Alat Berat
+    Route::get('/dashboard/alat-berat', [DashboardEquipmentController::class, 'index'])->name('dashboard.equipment.index');
+    Route::get('/dashboard/alat-berat/tambah', [DashboardEquipmentController::class, 'create'])->name('dashboard.equipment.create');
+    Route::post('/dashboard/alat-berat/tambah', [DashboardEquipmentController::class, 'store'])->name('dashboard.equipment.store');
+    Route::get('/dashboard/alat-berat/{id}/ubah', [DashboardEquipmentController::class, 'edit'])->name('dashboard.equipment.edit');
+    Route::put('/dashboard/alat-berat/{id}/ubah', [DashboardEquipmentController::class, 'update'])->name('dashboard.equipment.update');
+    Route::delete('/dashboard/alat-berat/{id}/hapus', [DashboardEquipmentController::class, 'destroy'])->name('dashboard.equipment.destroy');
 });

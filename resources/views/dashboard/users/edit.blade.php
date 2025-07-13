@@ -71,7 +71,7 @@
                 {{-- Submit Button --}}
                 <div class="text-right">
                     <button type="submit"
-                        class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow">
+                        class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow cursor-pointer">
                         Update User
                     </button>
                 </div>

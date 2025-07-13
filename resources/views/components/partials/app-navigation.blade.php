@@ -28,11 +28,18 @@
             <span class="text-sm font-bold">Dashboard</span>
         </a>
 
-        {{-- Dashboard --}}
+        {{-- Data Pengguna --}}
         <a href="{{ route('dashboard.user.index') }}"
             class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-[#38B6FF] {{ Route::is('dashboard.user.*') ? 'bg-[#38B6FF]' : '' }}">
             <i class="bi bi-people-fill"></i>
             <span class="text-sm font-bold">User Data</span>
+        </a>
+
+        {{-- Data Alat Berat --}}
+        <a href="{{ route('dashboard.equipment.index') }}"
+            class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-[#38B6FF] {{ Route::is('dashboard.equipment.*') ? 'bg-[#38B6FF]' : '' }}">
+            <i class="bi bi-gear-wide-connected"></i>
+            <span class="text-sm font-bold">Heavy Equipment</span>
         </a>
 
         {{-- Logout --}}
