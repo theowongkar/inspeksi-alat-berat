@@ -1,0 +1,52 @@
+1. User (Admin, Inspector, Customer)
+2. Type alat berat (Excavator, Loader, Elevator)
+2. Halaman tambah inspector
+3. Halaman tambah alat berat (anak kategori Excavator, anak kategori Loader, anak kategori Elevator)
+4. Halaman tambah inspeksi
+  1. Type alat berat Excavator
+    - select inspector
+    - select excavator
+    - tanggal inspeksi
+    - lokasi inspeksi
+    - info:
+        report no, hour reading
+    - cab: (score, description)
+    - engine: (score, description)
+    - hydraulics: (score, description)
+    - bucket: (score, description)
+    - functional test: (score, description)
+    - tools: (score, description)
+    - u/c: (score, description)
+    - problem/repairs:
+        photo (maks 6), notes
+  2. Type alat berat Loader:
+    - select inspector
+    - select loader
+    - tanggal inspeksi
+    - lokasi inspeksi
+    - info:
+        report no, hour reading
+    - cab: (score, description)
+    - engine: (score, description)
+    - exterior: (score, description)
+    - power train: (score, description)
+    - hydraulics: (score, description)
+    - functional test: (score, description)
+    - bucket: (score, description)
+    - problem/repairs:
+        photo (maks 6), notes
+  3. Type alat berat Elevator:
+    - select inspector
+    - select elevator
+    - tanggal inspeksi
+    - lokasi inspeksi
+    - info:
+        state ID, capacity
+    - inside car: (score, description)
+    - machine_room: (score, description)
+    - top of car: (score, description)
+    - hoistway: (score, description)
+    - inside hoistway: (score, description)
+    - pit: (score, description)
+    - more information:
+        photo (maks 6), notes
