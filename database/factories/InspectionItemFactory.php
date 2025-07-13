@@ -36,7 +36,7 @@ class InspectionItemFactory extends Factory
                 'inside hoistway',
                 'pit'
             ]),
-            'score' => fake()->numberBetween(1, 10),
+            'score' => fake()->numberBetween(10, 100),
             'description' => fake()->sentence(),
         ];
     }
