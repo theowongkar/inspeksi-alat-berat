@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class DashboardUserController extends Controller
 {
     public function index(Request $request)
     {
+        Gate::authorize('viewAny', User::class);
+
         // Validasi Input
         $validated = $request->validate([
             'search' => 'nullable|string|max:255',
@@ -34,11 +37,15 @@ class DashboardUserController extends Controller
 
     public function create()
     {
+        Gate::authorize('create', User::class);
+
         return view('dashboard.users.create');
     }
 
     public function store(Request $request)
     {
+        Gate::authorize('create', User::class);
+
         // Validasi Input
         $validated = $request->validate([
             'name'     => 'required|string|max:255',
@@ -63,6 +70,8 @@ class DashboardUserController extends Controller
         // Ambil User
         $user = User::findOrFail($id);
 
+        Gate::authorize('update', $user);
+
         return view('dashboard.users.edit', compact('user'));
     }
 
@@ -70,6 +79,8 @@ class DashboardUserController extends Controller
     {
         // Ambil User
         $user = User::findOrFail($id);
+
+        Gate::authorize('update', $user);
 
         // Validasi input
         $validated = $request->validate([
@@ -97,6 +108,8 @@ class DashboardUserController extends Controller
     {
         // Ambil User
         $user = User::findOrFail($id);
+
+        Gate::authorize('delete', $user);
 
         // Hapus User
         $user->delete();

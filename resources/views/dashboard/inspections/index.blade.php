@@ -83,14 +83,16 @@
                             <td class="px-4 py-2 text-center space-x-2 whitespace-nowrap">
                                 <a href="{{ route('dashboard.inspection.show', $inspection->id) }}"
                                     class="text-blue-600 hover:underline">Show</a>
-                                <form action="{{ route('dashboard.inspection.destroy', $inspection->id) }}"
-                                    method="POST" class="inline"
-                                    onsubmit="return confirm('Are you sure you want to delete this inspection?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="text-red-600 cursor-pointer hover:underline">Delete</button>
-                                </form>
+                                @can('delete', $inspection)
+                                    <form action="{{ route('dashboard.inspection.destroy', $inspection->id) }}"
+                                        method="POST" class="inline"
+                                        onsubmit="return confirm('Are you sure you want to delete this inspection?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="text-red-600 cursor-pointer hover:underline">Delete</button>
+                                    </form>
+                                @endcan
                             </td>
                         </tr>
                     @empty

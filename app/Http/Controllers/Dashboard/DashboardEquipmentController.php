@@ -6,11 +6,14 @@ use App\Models\Equipment;
 use Illuminate\Http\Request;
 use App\Models\EquipmentType;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class DashboardEquipmentController extends Controller
 {
     public function index(Request $request)
     {
+        Gate::authorize('viewAny', Equipment::class);
+
         // Validasi Input
         $validated = $request->validate([
             'search' => 'nullable|string|max:255',
@@ -45,6 +48,8 @@ class DashboardEquipmentController extends Controller
 
     public function create()
     {
+        Gate::authorize('create', Equipment::class);
+
         // Ambil Tipe Alat Berat
         $equipmentTypes = EquipmentType::orderBy('name')->get();
 
@@ -53,6 +58,8 @@ class DashboardEquipmentController extends Controller
 
     public function store(Request $request)
     {
+        Gate::authorize('create', Equipment::class);
+
         // Validasi Input
         $validated = $request->validate([
             'equipment_type_id' => 'required|exists:equipment_types,id',
@@ -74,6 +81,8 @@ class DashboardEquipmentController extends Controller
         // Ambil Alat Berat
         $equipment = Equipment::findOrFail($id);
 
+        Gate::authorize('update', $equipment);
+
         // Ambil Tipe Alat Berat
         $equipmentTypes = EquipmentType::orderBy('name')->get();
 
@@ -84,6 +93,8 @@ class DashboardEquipmentController extends Controller
     {
         // Ambil Alat Berat
         $equipment = Equipment::findOrFail($id);
+
+        Gate::authorize('update', $equipment);
 
         // Validasi Input
         $validated = $request->validate([
@@ -105,6 +116,8 @@ class DashboardEquipmentController extends Controller
     {
         // Ambil Alat Berat
         $equipment = Equipment::findOrFail($id);
+
+        Gate::authorize('delete', $equipment);
 
         // Hapus Alat Berat
         $equipment->delete();

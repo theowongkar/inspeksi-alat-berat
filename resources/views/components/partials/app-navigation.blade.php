@@ -29,18 +29,22 @@
         </a>
 
         {{-- Data Pengguna --}}
-        <a href="{{ route('dashboard.user.index') }}"
-            class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-[#38B6FF] {{ Route::is('dashboard.user.*') ? 'bg-[#38B6FF]' : '' }}">
-            <i class="bi bi-people-fill"></i>
-            <span class="text-sm font-bold">User Data</span>
-        </a>
+        @can('viewAny', App\Models\User::class)
+            <a href="{{ route('dashboard.user.index') }}"
+                class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-[#38B6FF] {{ Route::is('dashboard.user.*') ? 'bg-[#38B6FF]' : '' }}">
+                <i class="bi bi-people-fill"></i>
+                <span class="text-sm font-bold">User Data</span>
+            </a>
+        @endcan
 
-        {{-- Data Alat Berat --}}
-        <a href="{{ route('dashboard.equipment.index') }}"
-            class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-[#38B6FF] {{ Route::is('dashboard.equipment.*') ? 'bg-[#38B6FF]' : '' }}">
-            <i class="bi bi-gear-wide-connected"></i>
-            <span class="text-sm font-bold">Heavy Equipment</span>
-        </a>
+        @can('viewAny', App\Models\Equipment::class)
+            {{-- Data Alat Berat --}}
+            <a href="{{ route('dashboard.equipment.index') }}"
+                class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-[#38B6FF] {{ Route::is('dashboard.equipment.*') ? 'bg-[#38B6FF]' : '' }}">
+                <i class="bi bi-gear-wide-connected"></i>
+                <span class="text-sm font-bold">Heavy Equipment</span>
+            </a>
+        @endcan
 
         {{-- Data Inspeksi --}}
         <a href="{{ route('dashboard.inspection.index') }}"
@@ -50,11 +54,13 @@
         </a>
 
         {{-- Buat Inspeksi --}}
-        <a href="{{ route('dashboard.inspection.create') }}"
-            class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-[#38B6FF] {{ Route::is('dashboard.inspection.create') ? 'bg-[#38B6FF]' : '' }}">
-            <i class="bi bi-ui-checks"></i>
-            <span class="text-sm font-bold">Create Inspection</span>
-        </a>
+        @can('create', App\Models\Inspection::class)
+            <a href="{{ route('dashboard.inspection.create') }}"
+                class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-[#38B6FF] {{ Route::is('dashboard.inspection.create') ? 'bg-[#38B6FF]' : '' }}">
+                <i class="bi bi-ui-checks"></i>
+                <span class="text-sm font-bold">Create Inspection</span>
+            </a>
+        @endcan
 
         {{-- Logout --}}
         <form method="POST" action="{{ route('logout') }}">

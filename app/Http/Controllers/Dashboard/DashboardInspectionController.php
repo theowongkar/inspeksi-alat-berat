@@ -14,6 +14,7 @@ use App\Models\EquipmentTypeItem;
 use App\Models\InspectionProblem;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class DashboardInspectionController extends Controller
@@ -57,6 +58,8 @@ class DashboardInspectionController extends Controller
 
     public function create(Request $request)
     {
+        Gate::authorize('create', Inspection::class);
+
         $equipmentTypes = EquipmentType::all();
         $equipments = Equipment::all();
         $inspectors = User::where('role', 'Inspector')->get();
@@ -72,6 +75,8 @@ class DashboardInspectionController extends Controller
 
     public function store(Request $request)
     {
+        Gate::authorize('create', Inspection::class);
+
         // Validasi Input
         $validated = $request->validate([
             'equipment_type_id' => 'required|exists:equipment_types,id',
@@ -173,8 +178,11 @@ class DashboardInspectionController extends Controller
 
     public function destroy(string $id)
     {
+
         // Ambil Inspeksi
         $inspection = Inspection::findOrFail($id);
+
+        Gate::authorize('delete', $inspection);
 
         // Hapus semua foto terkait dari storage
         foreach ($inspection->problems as $problem) {
