@@ -20,21 +20,23 @@ class EquipmentTypeItemFactory extends Factory
         return [
             'equipment_type_id' => EquipmentType::inRandomOrder()->first()->id,
             'category' => fake()->randomElement([
-                'cab',
-                'engine',
-                'hydraulics',
-                'bucket',
-                'functional test',
-                'tools',
-                'u/c',
-                'exterior',
-                'power train',
-                'inside car',
-                'machine_room',
-                'top of car',
-                'hoistway',
-                'inside hoistway',
-                'pit'
+                [
+                    'Cab',
+                    'Engine',
+                    'Hydraulics',
+                    'Bucket',
+                    'Functional Test',
+                    'Tools',
+                    'U/C',
+                    'Exterior',
+                    'Power Train',
+                    'Inside Car',
+                    'Machine Room',
+                    'Top Of Car',
+                    'Hoistway',
+                    'Inside Hoistway',
+                    'Pit',
+                ]
             ]),
         ];
     }

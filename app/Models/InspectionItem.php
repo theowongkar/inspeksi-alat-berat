@@ -12,7 +12,7 @@ class InspectionItem extends Model
 
     protected $fillable = [
         'inspection_id',
-        'category',
+        'equipment_type_item_id',
         'score',
         'description'
     ];
@@ -22,5 +22,10 @@ class InspectionItem extends Model
     public function inspection()
     {
         return $this->belongsTo(Inspection::class);
+    }
+
+    public function equipmentTypeItem()
+    {
+        return $this->belongsTo(EquipmentTypeItem::class);
     }
 }

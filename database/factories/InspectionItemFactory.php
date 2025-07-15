@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\EquipmentTypeItem;
 use App\Models\Inspection;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,23 +20,7 @@ class InspectionItemFactory extends Factory
     {
         return [
             'inspection_id' => Inspection::inRandomOrder()->first()->id,
-            'category' => fake()->randomElement([
-                'cab',
-                'engine',
-                'hydraulics',
-                'bucket',
-                'functional test',
-                'tools',
-                'u/c',
-                'exterior',
-                'power train',
-                'inside car',
-                'machine_room',
-                'top of car',
-                'hoistway',
-                'inside hoistway',
-                'pit'
-            ]),
+            'equipment_type_item_id' => EquipmentTypeItem::inRandomOrder()->first()->id,
             'score' => fake()->numberBetween(10, 100),
             'description' => fake()->sentence(),
         ];

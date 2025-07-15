@@ -37,9 +37,32 @@ class DatabaseSeeder extends Seeder
 
         // --- Seed Equipment Types + Items ---
         $equipmentTypes = [
-            'Excavator' => ['cab', 'engine', 'hydraulics', 'bucket', 'functional test', 'tools', 'u/c'],
-            'Loader' => ['cab', 'engine', 'exterior', 'power train', 'hydraulics', 'functional test', 'bucket'],
-            'Elevator' => ['inside car', 'machine_room', 'top of car', 'hoistway', 'inside hoistway', 'pit'],
+            'Excavator' => [
+                'Cab',
+                'Engine',
+                'Hydraulics',
+                'Bucket',
+                'Functional Test',
+                'Tools',
+                'U/C',
+            ],
+            'Loader' => [
+                'Cab',
+                'Engine',
+                'Exterior',
+                'Power Train',
+                'Hydraulics',
+                'Functional Test',
+                'Bucket',
+            ],
+            'Elevator' => [
+                'Inside Car',
+                'Machine Room',
+                'Top Of Car',
+                'Hoistway',
+                'Inside Hoistway',
+                'Pit',
+            ],
         ];
 
         foreach ($equipmentTypes as $typeName => $categories) {
@@ -95,7 +118,7 @@ class DatabaseSeeder extends Seeder
                 ->each(function ($item) use ($inspection) {
                     InspectionItem::factory()->create([
                         'inspection_id' => $inspection->id,
-                        'category' => $item->category,
+                        'equipment_type_item_id' => $item->id,
                     ]);
                 });
 

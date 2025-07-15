@@ -33,7 +33,7 @@ return new class extends Migration
         Schema::create('inspection_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('inspection_id')->constrained('inspections')->onDelete('cascade');
-            $table->string('category', 100);
+            $table->foreignId('equipment_type_item_id')->constrained('equipment_type_items')->onDelete('cascade');
             $table->integer('score');
             $table->text('description');
         });
@@ -46,7 +46,7 @@ return new class extends Migration
 
         Schema::create('inspection_photos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('inspection_problem_id')->constrained('inspections')->onDelete('cascade');
+            $table->foreignId('inspection_problem_id')->constrained('inspection_problems')->onDelete('cascade');
             $table->string('photo_url', 255);
         });
     }

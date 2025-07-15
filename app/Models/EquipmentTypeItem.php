@@ -21,4 +21,9 @@ class EquipmentTypeItem extends Model
     {
         return $this->belongsTo(EquipmentType::class);
     }
+
+    public function inspectionItems()
+    {
+        return $this->hasMany(InspectionItem::class);
+    }
 }
