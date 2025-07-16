@@ -6,10 +6,13 @@ use App\Models\User;
 use App\Models\Equipment;
 use App\Models\Inspection;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\EquipmentType;
 use App\Models\InspectionInfo;
 use App\Models\InspectionItem;
 use App\Models\InspectionPhoto;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\InspectionExport;
 use App\Models\EquipmentTypeItem;
 use App\Models\InspectionProblem;
 use Illuminate\Support\Facades\DB;
@@ -174,6 +177,30 @@ class DashboardInspectionController extends Controller
         ])->findOrFail($id);
 
         return view('dashboard.inspections.show', compact('inspection'));
+    }
+
+    public function exportPdf(string $id)
+    {
+        $inspection = Inspection::with([
+            'equipmentType',
+            'equipment',
+            'inspector',
+            'info',
+            'items',
+            'problems.photos'
+        ])->findOrFail($id);
+
+        Gate::authorize('export', $inspection);
+
+        $pdf = Pdf::loadView('dashboard.inspections.pdf', compact('inspection'));
+        return $pdf->stream('inspection-report-' . $inspection->id . '.pdf');
+    }
+
+    public function exportExcel(string $id)
+    {
+        Gate::authorize('export', Inspection::class);
+
+        return Excel::download(new InspectionExport($id), 'inspection_' . $id . '.xlsx');
     }
 
     public function destroy(string $id)

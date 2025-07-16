@@ -43,4 +43,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/dashboard/inspeksi/tambah', [DashboardInspectionController::class, 'store'])->name('dashboard.inspection.store');
     Route::get('/dashboard/inspeksi/{id}/lihat', [DashboardInspectionController::class, 'show'])->name('dashboard.inspection.show');
     Route::delete('/dashboard/inspeksi/{id}/hapus', [DashboardInspectionController::class, 'destroy'])->name('dashboard.inspection.destroy');
+    Route::get('/dashboard/inspeksi/{id}/pdf', [DashboardInspectionController::class, 'exportPdf'])->name('dashboard.inspection.export-pdf');
+    Route::get('/dashboard/inspeksi/{id}/excel', [DashboardInspectionController::class, 'exportExcel'])->name('dashboard.inspection.export-excel');
 });

@@ -84,6 +84,22 @@
                         <div class="font-medium text-left">Location:</div>
                         <div class="text-right">{{ $inspection->location }}</div>
                     </div>
+
+                    {{-- Export Button --}}
+                    @can('export', $inspection)
+                        <div class="flex justify-between md:justify-end gap-2">
+                            <a href="{{ route('dashboard.inspection.export-pdf', $inspection->id) }}" target="__BLANK"
+                                class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow cursor-pointer">
+                                <i class="bi bi-filetype-pdf"></i>
+                                PDF
+                            </a>
+                            <a href="{{ route('dashboard.inspection.export-excel', $inspection->id) }}"
+                                class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow cursor-pointer">
+                                <i class="bi bi-filetype-xlsx"></i>
+                                EXCEL
+                            </a>
+                        </div>
+                    @endcan
                 </div>
             </div>
 
